@@ -4,28 +4,31 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.util.Set;
+=======
+import java.util.Vector;
+>>>>>>> 19aa07b8e942890bccc2b153f2685c7d23925062
 
 import com.mysql.jdbc.Statement;
 
 public class UserModel {
 
-	
 	private String name;
 	private String email;
 	private String pass;
 	private Integer id;
 	private Double lat;
 	private Double lon;
-	
-	public String getPass(){
+
+	public String getPass() {
 		return pass;
 	}
-	
-	public void setPass(String pass){
+
+	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -97,8 +100,6 @@ public class UserModel {
 		return null;
 	}
 
-	
-	
 	public static UserModel login(String email, String pass) {
 		try {
 			Connection conn = DBConnection.getActiveConnection();
@@ -127,7 +128,7 @@ public class UserModel {
 	}
 
 	public static boolean updateUserPosition(Integer id, Double lat, Double lon) {
-		try{
+		try {
 			Connection conn = DBConnection.getActiveConnection();
 			String sql = "Update users set `lat` = ? , `long` = ? where `id` = ?";
 			PreparedStatement stmt;
@@ -135,6 +136,23 @@ public class UserModel {
 			stmt.setDouble(1, lat);
 			stmt.setDouble(2, lon);
 			stmt.setInt(3, id);
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static boolean updateUserFollower(Integer id1,Integer id2) 
+	{
+		try{
+			Connection conn = DBConnection.getActiveConnection();
+			String sql = "Insert into follow (`followerID`,`followedID`) VALUES  (?,?)";
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id1);
+			stmt.setInt(2, id2);
 			stmt.executeUpdate();
 			return true;
 		}catch(SQLException e){
@@ -165,6 +183,33 @@ public class UserModel {
 		return false;
 		
 		
+	}
+
+	// ---------------------------------- getUserPosition ------------------------------------------//
+
+	public static Double[] getUserPosition(Integer id)
+	{
+		Double [] position = new Double[2];
+		try {
+
+			Connection conn = DBConnection.getActiveConnection();
+			String sql = "Select `lat`,`long` from users where `id` =?";
+			//UserModel user = new UserModel();
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				
+				position[0] = rs.getDouble("lat");
+				position[1] = rs.getDouble("long");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return position;
 	}
 
 }

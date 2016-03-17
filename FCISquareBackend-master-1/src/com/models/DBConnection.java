@@ -17,8 +17,17 @@ public class DBConnection {
 			//		.getConnection("jdbc:mysql://127.8.100.2:3306/se2firstapp?"
 			//				+ "user=adminYKFs38v&password=QG9RmdNVFgmc&characterEncoding=utf8");
 			connection = DriverManager
+<<<<<<< HEAD
 					.getConnection("jdbc:mysql://localhost:3306/se2firstapp?"
+<<<<<<< HEAD
 							+ "user=root&password=m7med&characterEncoding=utf8");
+=======
+							+ "user=root&characterEncoding=utf8");
+=======
+					.getConnection("jdbc:mysql://localhost:3306/fci_backend?"
+							+ "user=root&password=hadeer&characterEncoding=utf8");
+>>>>>>> ea9514ea6f3a06f86a17a2a2a047baec41f85009
+>>>>>>> 19aa07b8e942890bccc2b153f2685c7d23925062
 			return connection;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
