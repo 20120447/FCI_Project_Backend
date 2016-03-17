@@ -141,5 +141,22 @@ public class UserModel {
 		}
 		return false;
 	}
+	
+	public static boolean updateUserFollower(Integer id1,Integer id2) 
+	{
+		try{
+			Connection conn = DBConnection.getActiveConnection();
+			String sql = "Insert into follow (`followerID`,`followedID`) VALUES  (?,?)";
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id1);
+			stmt.setInt(2, id2);
+			stmt.executeUpdate();
+			return true;
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }
