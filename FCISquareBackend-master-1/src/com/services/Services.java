@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -87,6 +88,17 @@ public class Services {
 	}
 	
 
+@POST
+	@Path("/getFollower")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getFollower(@FormParam("id") Integer id) {
+		ArrayList <Integer> followID = UserModel.getFollower(id);
+		System.out.println("followIDs >>> " + followID.get(0));
+		JSONObject json = new JSONObject();
+		json.put("id", followID);
+		return json.toJSONString();
+	}
+	
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_PLAIN)
