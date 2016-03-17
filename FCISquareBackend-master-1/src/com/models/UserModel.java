@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Set;
 
 import com.mysql.jdbc.Statement;
 
@@ -140,6 +141,30 @@ public class UserModel {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public static Boolean unfollowUser(Integer ID_1  , Integer ID_2) {
+		try{
+			Connection conn = DBConnection.getActiveConnection();
+			
+			
+			String sql= " delete FROM follow WHERE  `followerID` = ? and `followedID` = ? ";
+			
+			PreparedStatement stmt;
+			
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, ID_1);
+			stmt.setInt(2, ID_2);
+			
+			stmt.executeUpdate();
+			return true;
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return false;
+		
+		
 	}
 
 }
