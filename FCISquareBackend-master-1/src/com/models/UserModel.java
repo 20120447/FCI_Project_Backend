@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.util.Set;
+>>>>>>> cc2fe957ff6b0a246a891c960c2c6dc1751a2391
 =======
 import java.util.Vector;
 >>>>>>> 19aa07b8e942890bccc2b153f2685c7d23925062
@@ -160,6 +164,30 @@ public class UserModel {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public static Boolean unfollowUser(Integer ID_1  , Integer ID_2) {
+		try{
+			Connection conn = DBConnection.getActiveConnection();
+			
+			
+			String sql= " delete FROM follow WHERE  `followerID` = ? and `followedID` = ? ";
+			
+			PreparedStatement stmt;
+			
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, ID_1);
+			stmt.setInt(2, ID_2);
+			
+			stmt.executeUpdate();
+			return true;
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return false;
+		
+		
 	}
 
 <<<<<<< HEAD

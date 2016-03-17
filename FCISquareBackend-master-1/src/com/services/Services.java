@@ -41,8 +41,8 @@ public class Services {
 	@POST
 	@Path("/signup")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String signUp(@FormParam("name") String name,
-			@FormParam("email") String email, @FormParam("pass") String pass) {
+	public String signUp(@FormParam("name") String name, @FormParam("email") String email,
+			@FormParam("pass") String pass) {
 		UserModel user = UserModel.addNewUser(name, email, pass);
 		JSONObject json = new JSONObject();
 		json.put("id", user.getId());
@@ -57,8 +57,7 @@ public class Services {
 	@POST
 	@Path("/login")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String login(@FormParam("email") String email,
-			@FormParam("pass") String pass) {
+	public String login(@FormParam("email") String email, @FormParam("pass") String pass) {
 		UserModel user = UserModel.login(email, pass);
 		JSONObject json = new JSONObject();
 		json.put("id", user.getId());
@@ -69,16 +68,30 @@ public class Services {
 		json.put("long", user.getLon());
 		return json.toJSONString();
 	}
-	
+
 	@POST
 	@Path("/updatePosition")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updatePosition(@FormParam("id") String id,
-			@FormParam("lat") String lat, @FormParam("long") String lon) {
-		Boolean status = UserModel.updateUserPosition(Integer.parseInt(id), Double.parseDouble(lat), Double.parseDouble(lon));
+	public String updatePosition(@FormParam("id") String id, @FormParam("lat") String lat,
+			@FormParam("long") String lon) {
+		Boolean status = UserModel.updateUserPosition(Integer.parseInt(id), Double.parseDouble(lat),
+				Double.parseDouble(lon));
 		JSONObject json = new JSONObject();
 		json.put("status", status ? 1 : 0);
 		return json.toJSONString();
+	}
+
+	// unfollow user
+	@POST
+	@Path("/unfollowUser")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String unfollowUser(@FormParam("id_1")Integer followerID , @FormParam("id_2") Integer followedID ) {
+
+		Boolean status = UserModel.unfollowUser(followerID, followedID);
+		JSONObject json = new JSONObject();
+		json.put("status", status ? 1 : 0);
+		return json.toJSONString();
+
 	}
 	
 	@POST
