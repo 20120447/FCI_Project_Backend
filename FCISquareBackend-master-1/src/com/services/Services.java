@@ -76,6 +76,18 @@ public class Services {
 		json.put("status", status ? 1 : 0);
 		return json.toJSONString();
 	}
+	
+	@POST
+	@Path("/followUser")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String followUser(@FormParam("id1") String id1,@FormParam("id2") String id2) 
+	{
+		Boolean status = UserModel.updateUserFollower(Integer.parseInt(id1),Integer.parseInt(id2));
+		JSONObject json = new JSONObject();
+		json.put("status", status ? 1 : 0);
+		return json.toJSONString();
+	}
+	
 
 	@POST
 	@Path("/GetLastPosition")
