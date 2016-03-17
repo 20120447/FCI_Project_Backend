@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.util.Vector;
+>>>>>>> 19aa07b8e942890bccc2b153f2685c7d23925062
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -16,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.server.mvc.Viewable;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.models.DBConnection;
@@ -88,6 +93,7 @@ public class Services {
 	}
 	
 
+<<<<<<< HEAD
 @POST
 	@Path("/getFollower")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -99,6 +105,24 @@ public class Services {
 		return json.toJSONString();
 	}
 	
+=======
+	@POST
+	@Path("/GetLastPosition")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String GetLastPosition(@FormParam("id") String id) {
+		
+	    //UserModel user = UserModel.getUserPosition(Integer.parseInt(id));
+		Double[] position = UserModel.getUserPosition(Integer.parseInt(id));
+		UserModel user = new UserModel();
+		JSONObject json = new JSONObject();
+		//json.put("id",user.getId());
+		json.put("lat", position[0]);
+		json.put("long", position[1]);
+		
+		return json.toJSONString();
+	}
+
+>>>>>>> 19aa07b8e942890bccc2b153f2685c7d23925062
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -107,4 +131,5 @@ public class Services {
 		// Connection URL:
 		// mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
 	}
+	
 }
