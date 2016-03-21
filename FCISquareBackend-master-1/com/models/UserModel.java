@@ -4,35 +4,28 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
-import java.util.Set;
->>>>>>> cc2fe957ff6b0a246a891c960c2c6dc1751a2391
-=======
-import java.util.Vector;
->>>>>>> 19aa07b8e942890bccc2b153f2685c7d23925062
 
 import com.mysql.jdbc.Statement;
 
 public class UserModel {
 
+	
 	private String name;
 	private String email;
 	private String pass;
 	private Integer id;
 	private Double lat;
 	private Double lon;
-
-	public String getPass() {
+	
+	public String getPass(){
 		return pass;
 	}
-
-	public void setPass(String pass) {
+	
+	public void setPass(String pass){
 		this.pass = pass;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -104,6 +97,8 @@ public class UserModel {
 		return null;
 	}
 
+	
+	
 	public static UserModel login(String email, String pass) {
 		try {
 			Connection conn = DBConnection.getActiveConnection();
@@ -132,7 +127,7 @@ public class UserModel {
 	}
 
 	public static boolean updateUserPosition(Integer id, Double lat, Double lon) {
-		try {
+		try{
 			Connection conn = DBConnection.getActiveConnection();
 			String sql = "Update users set `lat` = ? , `long` = ? where `id` = ?";
 			PreparedStatement stmt;
@@ -142,11 +137,12 @@ public class UserModel {
 			stmt.setInt(3, id);
 			stmt.executeUpdate();
 			return true;
-		} catch (SQLException e) {
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return false;
 	}
+	
 	
 	public static boolean updateUserFollower(Integer id1,Integer id2) 
 	{
@@ -190,8 +186,6 @@ public class UserModel {
 		
 	}
 
-<<<<<<< HEAD
-	
 
 
 	public static ArrayList getFollower(Integer id)
@@ -221,7 +215,7 @@ public class UserModel {
 	
 
 	
-=======
+
 	// ---------------------------------- getUserPosition ------------------------------------------//
 
 	public static Double[] getUserPosition(Integer id)
@@ -249,5 +243,5 @@ public class UserModel {
 		return position;
 	}
 
->>>>>>> 19aa07b8e942890bccc2b153f2685c7d23925062
+
 }
