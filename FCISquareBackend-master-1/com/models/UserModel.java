@@ -8,7 +8,10 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
-public class UserModel {
+//import com.mysql.jdbc.Statement;
+
+public class UserModel 
+{
 
 	
 	private String name;
@@ -210,13 +213,9 @@ public class UserModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;	}
+		return null;	
+	}
 	
-	
-
-	
-
-	// ---------------------------------- getUserPosition ------------------------------------------//
 
 	public static Double[] getUserPosition(Integer id)
 	{
