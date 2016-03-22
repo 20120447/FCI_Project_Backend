@@ -87,6 +87,8 @@ public class Services
 		return json.toJSONString();
 	}
 	
+	
+	//make follow 
 	@POST
 	@Path("/followUser")
 	@Produces(MediaType.TEXT_PLAIN)
