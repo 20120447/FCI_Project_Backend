@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path=""/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_79"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/3Com/workspace/DynamicWebProjectLab1/WebContent/WEB-INF/lib/javax.ws.rs-api-2.0.1.jar"/>
 	<classpathentry kind="lib" path="E:/FCI/DONE/Software eng/Project/mohamed samir/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="lib" path="E:/FCI/SW2/FCI_Project_Backend/FCISquareBackend-master-1/WebContent/WEB-INF/lib/aopalliance-repackaged-2.4.0-b06.jar"/>
