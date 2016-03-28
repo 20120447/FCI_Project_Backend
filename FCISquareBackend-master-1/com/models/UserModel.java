@@ -11,6 +11,12 @@ import com.mysql.jdbc.Statement;
 
 //import com.mysql.jdbc.Statement;
 
+/**
+ * this class contains actions of store ,get and update data in
+ *  data store of each service 
+ *
+ */
+
 public class UserModel 
 {
 
@@ -69,7 +75,14 @@ public class UserModel
 	public void setLon(Double lon) {
 		this.lon = lon;
 	}
-
+	
+	/**
+	 *  Add new user function used to store data of new user in data store 
+	 * @param name   provided user name 
+	 * @param email  provided user email
+	 * @param pass   provided user passward
+	 * @return   user object 
+	 */
 	public static UserModel addNewUser(String name, String email, String pass) {
 		try {
 			Connection conn = DBConnection.getActiveConnection();
@@ -101,7 +114,13 @@ public class UserModel
 		return null;
 	}
 
-	
+	/**
+	 *  login function , this function used to get data of the current user from store data 
+	 *  and check if data that entered from user is correct  or not .
+	 * @param email  provided  user email 
+	 * @param pass    provided user passward
+	 * @return      user object
+	 */
 	
 	public static UserModel login(String email, String pass) {
 		try {
@@ -129,7 +148,13 @@ public class UserModel
 		}
 		return null;
 	}
-
+	/**
+	 *updateUserPosition function ,this function used to update position  of user in data store .
+	 * @param id    provided  user id 
+	 * @param lat   provided Latitude of current user's position
+	 * @param lon   provided Longitude of current user's position
+	 * @return      boolean object if update is done then return true else return false
+	 */
 	public static boolean updateUserPosition(Integer id, Double lat, Double lon) {
 		try{
 			Connection conn = DBConnection.getActiveConnection();
@@ -147,6 +172,15 @@ public class UserModel
 		return false;
 	}
 	
+	/**
+	 * UpdateUserFollowerUser ,this function to store data of new user
+	 *  that followed by current user
+	 *  
+	 * @param id1   provided first user id who want to follow another user
+	 * @param id2   provided second user id who will be followed
+	 * @return    will return true if find the id of user that want to follow and update the data
+	 *  return false if not find this user
+	 */
 	
 	public static boolean updateUserFollower(Integer id1,Integer id2) 
 	{
@@ -165,7 +199,14 @@ public class UserModel
 		}
 		return false;
 	}
-	
+
+	/**
+	 * unfollowUser , this function used to delete and  update data of followers of the user 
+	 * @param id_1   provided follower id user
+	 * @param id_2   provided followed id user who will be unfollowed 
+	 * @return       boolean object true  if find the ids of the both users and update data 
+	 * if not find the id of one of them then return false 
+	 */
 	public static Boolean unfollowUser(Integer ID_1  , Integer ID_2) {
 		try{
 			Connection conn = DBConnection.getActiveConnection();
@@ -190,6 +231,12 @@ public class UserModel
 		
 	}
 
+	/**
+	 * getFollower ,this function used to get all data of the followers of current user from data store.
+
+	 * @param id   provided user id 
+	 * @return   list of ids of all current followers 
+	 */
 
 
 	public static ArrayList getFollower(Integer id)
@@ -217,6 +264,16 @@ public class UserModel
 		return null;	
 	}
 	
+
+	/**
+	 * getUserPosition ,this function used to get last updated position 
+	 * of any user in the following list
+	 * by select Latitude and Longitude of current user's position
+	 * @param id   provided user id 
+	 * @return     Latitude of current user's position
+	 *   Longitude of current user's position
+	 */
+
 
 	public static Double[] getUserPosition(Integer id)
 	{

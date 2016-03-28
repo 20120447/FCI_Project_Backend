@@ -14,11 +14,11 @@ public class DBConnection {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager
-					.getConnection("jdbc:mysql://127.2.167.130:3306/firstapp?"
-							+ "user=adminAL861B2&password=zW76T6h9h46K&characterEncoding=utf8");
+					.getConnection("jdbc:mysql://127.7.208.2:3306/firstapp?"
+							+ "user=admin6CnCNfE&password=WNckkPYmgjjA&characterEncoding=utf8");
 			//connection = DriverManager
-				//	.getConnection("jdbc:mysql://localhost:3306/fci_backend?"
-					//		+ "user=root&password=hadeer&characterEncoding=utf8");
+			//		.getConnection("jdbc:mysql://localhost:3306/fci_backend?"
+			//				+ "user=root&password=hadeer&characterEncoding=utf8");
 			return connection;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

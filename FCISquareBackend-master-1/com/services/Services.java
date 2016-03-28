@@ -14,11 +14,30 @@ import org.json.simple.JSONObject;
 
 import com.models.UserModel;
 
+/**
+ * This class contains rest services and action functions for web applications 
+ * version 1.0
+ * @author Mohamed samir ,Hadeer Tarek , Nesma mahmoud , Nada Nashaat , Fatma Abdelaty
+ * since 17/3/2016
+ */
+
 
 
 @Path("/")
 public class Services
 {
+	
+
+	/**
+	 * Signup rest service, this service will be called to add new user 
+	 * @param name 
+	 *            provide user name 
+	 * @param email  
+	 *           provide user email
+	 * @param pass   
+	 *          provide user password
+	 * @return  status json
+	 */
 	
 	/*
 	 * @GET
@@ -46,6 +65,14 @@ public class Services
 		return json.toJSONString();
 	}
 
+	/**
+	 * login rest service ,this service called to make user to interact with the system
+	 * @param email  
+	 *         provided user email
+	 * @param pass  
+	 *         provided user passward
+	 * @return  user in  json format
+	 */
 	@POST
 	@Path("/login")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -61,6 +88,18 @@ public class Services
 		json.put("long", user.getLon());
 		return json.toJSONString();
 	}
+	
+	/**
+	 * UpdatePosition service ,this service called to make User can update 
+	 * his/her position in the system to be his/her current position.
+	 * @param id   
+	 *         provide user id
+	 * @param lat  
+	 *        provided Latitude of current user's position
+	 * @param lon  
+	 *        provide Longitude of current user's position
+	 * @return  status json
+	 */
 
 	@POST
 	@Path("/updatePosition")
@@ -76,6 +115,16 @@ public class Services
 	}
 
 	// unfollow user
+	/**
+	 * unfollowUser rest service ,this service is called to make User can
+	 *  un-follow another user in the system
+	 *   
+	 * @param followerID    
+	 *               provide follower id user  
+	 * @param followedID    
+	 *               provided followed id user 
+	 * @return  status json 
+	 */
 	@POST
 	@Path("/unfollowUser")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -89,6 +138,16 @@ public class Services
 	
 	
 	//make follow 
+	/**
+	 * FollowUser rest service ,this service is called to make the  User 
+	 * can follow another user in the system
+	 * 
+	 * @param id1   
+	 *         provided first user id 
+	 * @param id2   
+	 *           provided second user id 
+	 * @return   status json 
+	 */
 	@POST
 	@Path("/followUser")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -101,7 +160,16 @@ public class Services
 	}
 	
 
-
+//////////follow
+	
+/**
+ * getFollower rest service , by calling this service User
+ *  can list all his/her current followers in the system
+ *  
+ * @param id   
+ *         provided user id 
+ * @return status json
+ */
     @POST
 	@Path("/getFollower")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -115,6 +183,13 @@ public class Services
 	}
 	
 
+/**
+ * GetLastPosition rest service  ,by calling this sercvice User
+ *  can see the last updated position of any user in the following list
+ * @param id  
+ *          provided  user id
+ * @return  status json 
+ */
 	@POST
 	@Path("/GetLastPosition")
 	@Produces(MediaType.TEXT_PLAIN)
